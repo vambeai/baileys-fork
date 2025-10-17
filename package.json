@@ -1,7 +1,7 @@
 {
-  "name": "baileys",
+  "name": "@vambeai/baileys",
   "type": "module",
-  "version": "7.0.0-rc.5",
+  "version": "7.0.0-vambeai.0",
   "description": "A WebSockets library for interacting with WhatsApp Web",
   "keywords": [
     "whatsapp",
@@ -13,17 +13,17 @@
   },
   "license": "MIT",
   "author": "Rajeh Taher",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "files": [
-    "lib/**/*",
+    "dist/**/*",
     "WAProto/**/*",
     "engine-requirements.js"
   ],
   "scripts": {
     "build:all": "npm run build && npm run build:docs",
     "build:docs": "typedoc",
-    "build": "tsc -P tsconfig.build.json && tsc-esm-fix --tsconfig=tsconfig.build.json --ext=.js",
+    "build": "yarn tsc",
     "changelog:last": "conventional-changelog -p angular -r 2",
     "changelog:preview": "conventional-changelog -p angular -u",
     "changelog:update": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
@@ -33,7 +33,7 @@
     "lint": "tsc && eslint src --ext .js,.ts",
     "lint:fix": "npm run format && npm run lint -- --fix",
     "prepack": "npm run build",
-    "prepare": "npm run build",
+    "prepare": "yarn build",
     "preinstall": "node ./engine-requirements.js",
     "release": "release-it",
     "test": "node --experimental-vm-modules ./node_modules/.bin/jest --testMatch '**/*.test.ts'",
@@ -103,5 +103,8 @@
   "packageManager": "yarn@4.9.2",
   "engines": {
     "node": ">=20.0.0"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
